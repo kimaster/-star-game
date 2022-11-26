@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 
 
 function StarMatch(){
-  const stars=utils.random(1,9);
+//  const stars=utils.random(1,9);
+ 
+  const [stars,Setstars]= useState(utils.random(1,9));
    return(<div className='game'>
       <div className='help"'>
         Please pick 1 or more numbers that sum the number of stars
