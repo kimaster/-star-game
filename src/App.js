@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 
+function StarMatch(){
+
+   return(<div className='game'>
+      <div className='help"'>
+        Please pick 1 or more numbers that sum the number of stars
+      </div>
+      <div className='game-board'>
+        <div className='stars-container'>
+          stars
+        </div>
+        <div className='nums-container'>
+           numbers
+        </div>
+      </div>
+    </div>)
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <StarMatch/>
   );
 }
 
