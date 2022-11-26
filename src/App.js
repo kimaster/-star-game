@@ -3,11 +3,25 @@ import './App.css';
 import { useState } from 'react';
 
 function NumberPlay(props){
-
- return(
-      <button className="number">{props.number}</button>
+return(
+      <button className="number" key={props.number} onClick={()=>console.log('num',props.number)} >{props.number}</button>
   )
 }
+
+function StartsDisplay(props){
+  return(
+      <>
+      {
+        utils.range(1,props.count)
+              .map(starId=>
+                    <div key={starId} className='star'></div>
+          )
+      }      
+      </>
+    )
+
+  }
+  
 
 function StarMatch(){
 //  const stars=utils.random(1,9);
@@ -19,11 +33,7 @@ function StarMatch(){
       </div>
       <div className='game-board'>
         <div className='stars-container'>
-        {
-          utils.range(1,stars).map(starId=>
-            <div key={starId} className='star'></div>)
-
-        }  
+        <StartsDisplay count={stars}/>
         </div>
         <div className='nums-container'>
         {
