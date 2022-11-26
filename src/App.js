@@ -2,7 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+function NumberPlay(props){
 
+ return(
+      <button className="number">{props.number}</button>
+  )
+}
 
 function StarMatch(){
 //  const stars=utils.random(1,9);
@@ -21,13 +26,10 @@ function StarMatch(){
         }  
         </div>
         <div className='nums-container'>
-
         {
-          utils.range(1,9).map(Number=>
-            <button className="number">{Number}</button>)
-
-        }  
+          utils.range(1,9).map(Number=> <NumberPlay  number={Number} />)
  
+        }  
         </div>
       </div>
       <div className="timer">Time Remaining: 10</div>
