@@ -4,7 +4,14 @@ import { useState } from 'react';
 
 function NumberPlay(props){
 return(
-      <button className="number" key={props.number} onClick={()=>console.log('num',props.number)} >{props.number}</button>
+      <button className="number" 
+            style={{
+              backgroundColor:colors[props.status]
+            }}
+            key={props.number} 
+            onClick={()=>console.log('num',props.number)} >
+                {props.number}
+      </button>
   )
 }
 
@@ -13,20 +20,40 @@ function StartsDisplay(props){
       <>
       {
         utils.range(1,props.count)
-              .map(starId=>
-                    <div key={starId} className='star'></div>
+              .map(starId=><div key={starId} className='star'></div>
           )
       }      
       </>
     )
 
   }
+
   
 
 function StarMatch(){
 //  const stars=utils.random(1,9);
  
-  const [stars,Setstars]= useState(utils.random(1,9));
+  const [stars,setstars]= useState(utils.random(1,9));
+  const [availableNums,setavailableNums]= useState([1,2,3,4,5]);
+  const [candidateNums,setcandidateNums]= useState([2,3]);
+
+  const candidateAreWrong=     utils.sum(candidateNums)>stars;
+  const numberStatus=(number)=>{
+
+    if (!availableNums.includes(number)){
+      return 'used'
+    }
+    if(candidateNums.includes(number)){
+
+     return candidateAreWrong? 'wrong' : 'candidate'
+    }
+
+    return 'available'
+
+  }
+
+
+
    return(<div className='game'>
       <div className='help"'>
         Please pick 1 or more numbers that sum the number of stars
@@ -37,7 +64,11 @@ function StarMatch(){
         </div>
         <div className='nums-container'>
         {
-          utils.range(1,9).map(Number=> <NumberPlay  number={Number} />)
+          utils.range(1,9).map(
+            Number=><NumberPlay
+           status={numberStatus(Number)}
+            number={Number} />
+            )
  
         }  
         </div>
@@ -50,7 +81,7 @@ const colors={
 available:'gray',
 used:'lightgreen',
 wrong:'lightred',
-ccandidate:'brown'
+candidate:'brown'
 
 }
 
